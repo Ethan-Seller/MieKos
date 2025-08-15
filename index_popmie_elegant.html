@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>POP MIE Elegant Store 🍜</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #fff8f0, #fce4ec);
+            text-align: center;
+            padding: 30px;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            color: #d81b60;
+            margin-bottom: 5px;
+        }
+
+        p {
+            font-size: 1em;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            max-width: 400px;
+            margin: auto;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        input, select, button {
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            width: 100%;
+            font-size: 1em;
+        }
+
+        button {
+            background: #d81b60;
+            color: white;
+            border: none;
+            margin-top: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #ad1457;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fce4ec;
+            border-radius: 8px;
+            display: none;
+        }
+
+        img.popmie-img {
+            width: 120px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🍜 POP MIE Elegant Store 🍜</h1>
+    <p>Silakan isi nama dan pilih rasa Popmie favorit Anda.</p>
+
+    <div class="container">
+        <label>Nama Anda:</label>
+        <input type="text" id="nama" placeholder="Masukkan nama">
+
+        <label>Pilih Rasa Popmie:</label>
+        <select id="rasa" onchange="showImage()">
+            <option value="">-- Pilih Rasa --</option>
+            <option value="Popmie Ayam">Popmie Ayam</option>
+            <option value="Popmie Kari Ayam">Popmie Kari Ayam</option>
+            <option value="Popmie Tori Miso">Popmie Tori Miso</option>
+            <option value="Mie Sedap Goreng">Mie Sedap Goreng</option>
+            <option value="Mie Sedap Kari Spesial">Mie Sedap Kari Spesial</option>
+        </select>
+
+        <div id="gambar"></div>
+
+        <button onclick="tampilkanHasil()">Lihat Nomor WA</button>
+
+        <div class="result" id="hasil"></div>
+    </div>
+
+    <script>
+        function showImage() {
+            let rasa = document.getElementById("rasa").value;
+            let gambarDiv = document.getElementById("gambar");
+            let imgSrc = "";
+
+            if (rasa === "Popmie Ayam") imgSrc = "https://i.ibb.co/7yz7L9g/popmie-ayam.png";
+            else if (rasa === "Popmie Kari Ayam") imgSrc = "https://i.ibb.co/mv6hfpc/popmie-kari.png";
+            else if (rasa === "Popmie Tori Miso") imgSrc = "https://i.ibb.co/pfMQwQ8/popmie-torimiso.png";
+            else if (rasa === "Mie Sedap Goreng") imgSrc = "https://i.ibb.co/pw0LwP0/miesedap-goreng.png";
+            else if (rasa === "Mie Sedap Kari Spesial") imgSrc = "https://i.ibb.co/Nr7bdSs/miesedap-kari.png";
+
+            if (imgSrc) {
+                gambarDiv.innerHTML = `<img src="${imgSrc}" class="popmie-img">`;
+            } else {
+                gambarDiv.innerHTML = "";
+            }
+        }
+
+        function tampilkanHasil() {
+            let nama = document.getElementById("nama").value.trim();
+            let rasa = document.getElementById("rasa").value;
+
+            if (nama === "" || rasa === "") {
+                alert("Silakan masukkan nama dan pilih rasa Popmie.");
+                return;
+            }
+
+            let pesan = `
+                Halo <b>${nama}</b>!<br>
+                Anda memilih <b>${rasa}</b>.<br><br>
+                Untuk membeli, hubungi:<br>
+                📞 <b>+62 852-6070-1176</b><br><br>
+                Terima kasih sudah memilih POP MIE Elegant Store!
+            `;
+
+            let hasilDiv = document.getElementById("hasil");
+            hasilDiv.innerHTML = pesan;
+            hasilDiv.style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
